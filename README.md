@@ -1,11 +1,13 @@
-# minesweeper
+# Minesweeper thought process
+- Create a grid
+- Dssign random mine
+- Data structure
+- Detect mine in each cell
+- Determine behavior
+- Display hide/reveal
+- Add right click and double click
+- Check win state
 
-create a grid
-assign random mine
-data structure
-detect mine in each cell
-determine behavior
-display hide/reveal
 ## Project setup
 ```
 npm install
@@ -26,5 +28,3 @@ npm run build
 npm run lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
