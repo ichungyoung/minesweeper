@@ -1,5 +1,11 @@
 # minesweeper
 
+create a grid
+assign random mine
+data structure
+detect mine in each cell
+determine behavior
+display hide/reveal
 ## Project setup
 ```
 npm install
