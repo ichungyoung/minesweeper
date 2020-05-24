@@ -64,22 +64,26 @@
                     }
                 }
             },
-            neighborOpened(payload) {
+            myConcernedEvent(payload) {
                 if (payload.row>=this.rowidx-1 && payload.row<=this.rowidx+1 &&
-                    payload.col>=this.colidx-1 && payload.col<=this.colidx+1 &&
+                    payload.col>=this.colidx-1 && payload.col<=this.colidx+1) {
+                        return true;
+                }
+                return false;
+            },
+            neighborOpened(payload) {
+                if (this.myConcernedEvent(payload) &&
                     this.isClosed && !this.isFlagged) {
                     this.openCell(null);
                 }
             },
             neighboorIsBomb(payload) {
-                if (payload.row>=this.rowidx-1 && payload.row<=this.rowidx+1 &&
-                    payload.col>=this.colidx-1 && payload.col<=this.colidx+1) {
+                if (this.myConcernedEvent(payload)) {
                     this.solution++;
                 }
             },
             neighboorIsFlagged(payload) {
-                if (payload.row>=this.rowidx-1 && payload.row<=this.rowidx+1 &&
-                    payload.col>=this.colidx-1 && payload.col<=this.colidx+1) {
+                if (this.myConcernedEvent(payload)) {
                     this.guessing++;
                 }
             },
@@ -97,7 +101,6 @@
                     target.querySelector('.fa-flag-checkered').style.display='none';
                 }
                 eventBus.$emit('iamaflag', {row: this.rowidx, col: this.colidx})
-            //    this.checkWon();
             },
             clearCell() {
                 if (this.guessing==this.solution) {
@@ -111,7 +114,7 @@
                         eventBus.$emit('iamabomb', {row: this.rowidx, col: this.colidx})
                     }
                 } else if (message=='reset'){
-                    if (this.$refs.cover) {
+                    if (this.$refs.cover && this.$refs.cover.classList.contains("reveal")) {
                         this.$refs.cover.classList.remove("reveal")
                     }
                     if (this.$refs.flag) {

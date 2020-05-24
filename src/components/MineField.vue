@@ -46,27 +46,6 @@ export default {
             eventBus.$emit('broadcast','iamabomb');
       },200)
     },
-    checkWon() {
-      var won = true;
-      for (var ridx=0; ridx<this.dim; ridx++) {
-        for (var cidx=0; cidx<this.dim; cidx++) {
-          var cell = this.board[ridx][cidx];
-          if (cell.isBomb && !(cell.isClosed||cell.isFlagged)) {
-            won = false
-            break;
-          } else if (!cell.isBomb && cell.isClosed) {
-            won = false
-            break;
-          }
-        }
-        if (won==false) {
-          break;
-        }
-      }
-      if (won) {
-        alert("You WON!!");
-      }
-    },
     addToTotal() {
       this.total++;
       if (this.total==this.dim*this.dim) {
